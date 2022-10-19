@@ -147,7 +147,7 @@ function addNewProject(projectName,projectDesc){
 }
 
 
-/*
+
 function editProjectPopUp(){
   const element = document.createElement('div');
  element.setAttribute('id',"form-popup");
@@ -177,21 +177,21 @@ function inputArea(placeholder, name){
   element.setAttribute('name', name);
   return element;
 }
-document.querySelector(".form-container").appendChild(createLabel("Title: ", "titleName"));
-document.querySelector(".form-container").appendChild(inputArea("Title goes here", "titleName"));
+document.querySelector("#formArea").appendChild(createLabel("Title: ", "titleName"));
+document.querySelector("#formArea").appendChild(inputArea("Title goes here", "titleName"));
 
-document.querySelector(".form-container").appendChild(createLabel("Description: ", "description"));
-document.querySelector(".form-container").appendChild(inputArea("Description: ", "description"));
+document.querySelector("#formArea").appendChild(createLabel("Description: ", "description"));
+document.querySelector("#formArea").appendChild(inputArea("Description: ", "description"));
 
 
   let navButton = document.createElement("button");
   navButton.setAttribute('class',"change");
   navButton.setAttribute('id',"changeButton");
      navButton.append("Confirm");
-     navButton.addEventListener("click",console.log() );
-     document.querySelector(".form-container").appendChild(navButton);
+     navButton.addEventListener("click",editProject(description.value, description.value) );
+     document.querySelector("#formArea").appendChild(navButton);
 
-}*/
+}
 function editProject(title, description){
   console.log(title + description)
 }
@@ -203,4 +203,5 @@ function openForm() {
 function closeForm() {
   document.getElementById("form-popup").style.display = "none";
 }
+editProjectPopUp()
 displayTask(task); 
