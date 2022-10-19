@@ -133,10 +133,6 @@ const element = document.createElement('div');
        document.querySelector("#"+divId).appendChild(createNotes());
     }
 }
-
-
-
-
 function editForm(i){
   console.log(i)
 }
@@ -145,6 +141,7 @@ function addNewProject(projectName,projectDesc){
   new projectItem(projectName, projectDesc);
   console.log(projects);
 }
+
 
 
 
@@ -164,14 +161,14 @@ document.querySelector('#form-popup').appendChild(createForm());
 function createLabel(text, name){
   var x = document.createElement("LABEL");
   var t = document.createTextNode(text);
-  x.setAttribute("for", "name");
+  x.setAttribute("for", name);
   x.appendChild(t);
   return x;
 }
  
 function inputArea(placeholder, name){
   let element = document.createElement("INPUT");
-  element.setAttribute('id',"title");
+  element.setAttribute('id',name);
   element.setAttribute('type',"text");
   element.setAttribute('placeholder', placeholder);
   element.setAttribute('name', name);
@@ -183,15 +180,20 @@ document.querySelector("#formArea").appendChild(inputArea("Title goes here", "ti
 document.querySelector("#formArea").appendChild(createLabel("Description: ", "description"));
 document.querySelector("#formArea").appendChild(inputArea("Description: ", "description"));
 
-
-  let navButton = document.createElement("button");
-  navButton.setAttribute('class',"change");
-  navButton.setAttribute('id',"changeButton");
-     navButton.append("Confirm");
-     navButton.addEventListener("click",editProject(description.value, description.value) );
-     document.querySelector("#formArea").appendChild(navButton);
+function submitButton(){
+  let button = document.createElement("button");
+  button.setAttribute('class',"change");
+  button.setAttribute('id',"changeButton");
+  button.append("Confirm");
+  button.addEventListener("click",editProject(document.getElementById('titleName').value , document.getElementById('description').value));
+  button.addEventListener("click",closeForm() );
+  return button;
+}
+   document.querySelector("#formArea").appendChild(submitButton());
 
 }
+
+
 function editProject(title, description){
   console.log(title + description)
 }
