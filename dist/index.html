@@ -5,7 +5,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="content"></div>
+    <div id="content">
+        <div id="form-popup" id="myForm">
+            <form class="form-container">
+              <h1>Edit Project</h1>
+          
+              <label for="title"><b>Title</b></label>
+              <input type="text" placeholder="Please enter title" name="title" required>
+          
+              <label for="description"><b>Description</b></label>
+              <input type="text" placeholder="Please enter new description" name="description" required>
+    
+              <button type="button" class="btn" onclick="addNew(bookTitle.value, author.value ,pages.value ,readStatus.value), closeForm()">Add this book</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div>
+
+    </div>
 </body>
 <script src="main.js"></script>
 </html>
