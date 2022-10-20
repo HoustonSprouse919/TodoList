@@ -1,6 +1,6 @@
 let task = [];
 let projects = [];
-let currentProjectEdit = 0;
+let currentProjectEdit;
 function projectItem(title, description){ //constructor for new book objects
   this.title= title;
   this.description= description;
@@ -58,6 +58,9 @@ function taskItem(title, description, dueDate,priority,notes,arrayName){ //const
             navButton.setAttribute('id',i);
                navButton.append("edit");
                navButton.addEventListener("click", openForm );
+               navButton.addEventListener("click", () => {
+                currentProjectEdit = i;
+              });
                return navButton;
             }
             document.querySelector("#"+divId).appendChild(button());
@@ -185,7 +188,9 @@ function submitButton(){
   button.setAttribute('class',"change");
   button.setAttribute('id',"changeButton");
   button.append("Confirm");
-  button.addEventListener("click",editProject(document.getElementById('titleName').value , document.getElementById('description').value));
+  button.addEventListener("click", () => {
+    editProject(document.getElementById('titleName').value , document.getElementById('description').value)
+  });
   button.addEventListener("click",closeForm() );
   return button;
 }
@@ -195,7 +200,7 @@ function submitButton(){
 
 
 function editProject(title, description){
-  console.log(title + description)
+  console.log(title + description + currentProjectEdit)
 }
 
 function openForm() {
