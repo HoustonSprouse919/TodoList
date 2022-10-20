@@ -22,10 +22,13 @@ function taskItem(title, description, dueDate,priority,notes,arrayName){ //const
   new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
   new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
 
-  function displayProjects(){
-    const element = document.createElement('div');
+  const element = document.createElement('div');
      element.setAttribute('id',"projectsArea");
      document.querySelector('body').appendChild(element);
+
+  function displayProjects(){
+    const container = document.querySelector('#projectsArea'); //selects container we are using
+    removeAllChildNodes(container);
     
      for(let i =0; i<projects.length;i++){
           let divId = "divId" + i;
@@ -59,7 +62,7 @@ function taskItem(title, description, dueDate,priority,notes,arrayName){ //const
                navButton.append("edit");
                navButton.addEventListener("click", openForm );
                navButton.addEventListener("click", () => {
-                currentProjectEdit = i;
+               currentProjectEdit = i;
               });
                return navButton;
             }
@@ -200,7 +203,11 @@ function submitButton(){
 
 
 function editProject(title, description){
-  console.log(title + description + currentProjectEdit)
+  projects[currentProjectEdit].title = title;
+  projects[currentProjectEdit].description = description;
+  console.log(projects[0].title)
+  console.log(projects[0].description)
+  displayProjects()
 }
 
 function openForm() {
@@ -212,3 +219,8 @@ function closeForm() {
 }
 editProjectPopUp()
 displayTask(task); 
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
