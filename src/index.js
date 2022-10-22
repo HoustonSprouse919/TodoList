@@ -16,7 +16,7 @@ function taskItem(title, description, dueDate,priority,notes,arrayName){ //const
     this.checkStatus = false;
     arrayName.push(this)
   }
-  new projectItem("first project", "its the first");
+  new projectItem("First title", "First description");
   new taskItem("go to gym", "get those gains", "every day", "2","need to eat more" , task);
   new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
   new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
@@ -80,6 +80,10 @@ function taskItem(title, description, dueDate,priority,notes,arrayName){ //const
     }
     displayProjects();
 
+    function testAddNew(){
+      new projectItem("first project", "its the first");
+      displayProjects()
+    }
 
 function displayTask(arrayId){
 const element = document.createElement('div');
@@ -139,19 +143,43 @@ const element = document.createElement('div');
        document.querySelector("#"+divId).appendChild(createNotes());
     }
 }
-function editForm(i){
-  console.log(i)
-}
 
 function addNewProject(projectName,projectDesc){
   new projectItem(projectName, projectDesc);
-  console.log(projects);
+}
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+displayTask(task); 
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
 }
 
 
+function editProject(newTitle, newDescription){
+  console.log(projects[0].title)
+  console.log(projects[0].description)
+  projects[0].title = newTitle
+  projects[0].description = newDescription
+  console.log(projects[0].title)
+  console.log(projects[0].description)
+  console.log(projects[0])
+  displayProjects()
+}
 
-
-function editProjectPopUp(){
+document.querySelector("#submitChanges").addEventListener("click", () => {
+  editProject(document.getElementById('projectName').value , document.getElementById('projectDesc').value)
+});
+document.querySelector("#submitChanges").addEventListener("click",closeForm );
+/*function editProjectPopUp(){
   const element = document.createElement('div');
  element.setAttribute('id',"form-popup");
  document.querySelector('body').appendChild(element);
@@ -202,25 +230,7 @@ function submitButton(){
 }
 
 
-function editProject(title, description){
-  projects[currentProjectEdit].title = title;
-  projects[currentProjectEdit].description = description;
-  console.log(projects[0].title)
-  console.log(projects[0].description)
-  displayProjects()
-}
 
 function openForm() {
-  document.getElementById("form-popup").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("form-popup").style.display = "none";
-}
-editProjectPopUp()
-displayTask(task); 
-function removeAllChildNodes(parent) {
-  while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
-  }
-}
+  document.getElementById("form-popup").style.display = "block"; 
+} */

@@ -68,6 +68,17 @@ width: 100%;
     right: 10px;
     z-index: 9;
   }
+  .form-popup {
+    background-color: rgb(139, 138, 138);
+    border: 3px solid #f1f1f1;
+    bottom: 50vh;
+    display: none;
+    flex-direction: column;
+    padding: 20px 10px;
+    position: fixed;
+    right: 10px;
+    z-index: 9;
+  }
   .form-container{
     display: flex;
     flex-direction: column;
