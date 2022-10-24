@@ -27,7 +27,6 @@
 
 
       
-      <div id="content"></div>
       <div class="form-popup" id="addNewProjectForm">
           <form class="form-container">
             <h1>Add New Project</h1>
@@ -40,14 +39,37 @@
             
   
             <button type="button" class="btn" id ="submitNewProject">Submit changes</button>
-            <button type="button" class="btn cancel" id ="newProjectCancel">Close</button>
+            <button type="button" class="btn cancel" id ="cancelNewProject">Close</button>
           </form>
         </div>
-
-
-
         </form>
       </div>
 
+
+
+
+      <div class="form-popup" id="addNewTaskForm">
+        <form class="form-container">
+          <h1>Add New Task</h1>
+      
+          <label for="newTaskName"><b>Task name</b></label>
+          <input type="text" id = "newTaskNameName" placeholder="Enter new task name" name="taskName" required>
+      
+          <label for="newTaskNameDesc"><b>Task description</b></label>
+          <input type="text" id = "newTaskNameDesc" placeholder="Enter project description" name="taskDesc" required>
+          
+          <label for="newTaskNotes"><b>Task name</b></label>
+          <input type="text" id = "newTaskNotes" placeholder="Enter new project name" name="taskNotes" required>
+      
+          <label for="newTaskPriority"><b>Task description</b></label>
+          <input type="text" id = "newTaskPriority" placeholder="Enter project description" name="taskPriority" required>
+
+          <label for="newTaskDueDate"><b>Task name</b></label>
+          <input type="text" id = "newTaskDueDate" placeholder="Enter new project name" name="taskDueDate" required>
+      
+          <button type="button" class="btn" id ="submitNewTask">Submit changes</button>
+          <button type="button" class="btn cancel" id ="cancelNewTask">Close</button>
+        </form>
+      </div>
 </body>
 </html>
