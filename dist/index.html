@@ -9,7 +9,7 @@
 <body>
     <div id ="projectsArea"></div>
     <div id="content"></div>
-    <div class="form-popup" id="myForm">
+    <div class="form-popup" id="editProjectForm">
         <form class="form-container">
           <h1>Edit Project</h1>
       
@@ -21,10 +21,33 @@
           
 
           <button type="button" class="btn" id ="submitChanges">Submit changes</button>
-          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          <button type="button" class="btn cancel" id ="btnCancel">Close</button>
         </form>
       </div>
 
+
+      
+      <div id="content"></div>
+      <div class="form-popup" id="addNewProjectForm">
+          <form class="form-container">
+            <h1>Add New Project</h1>
+        
+            <label for="newProjectName"><b>Project name</b></label>
+            <input type="text" id = "newProjectName" placeholder="Enter new project name" name="projectName" required>
+        
+            <label for="newProjectDesc"><b>project description</b></label>
+            <input type="text" id = "newProjectDesc" placeholder="Enter project description" name="projectDesc" required>
+            
+  
+            <button type="button" class="btn" id ="submitNewProject">Submit changes</button>
+            <button type="button" class="btn cancel" id ="newProjectCancel">Close</button>
+          </form>
+        </div>
+
+
+
+        </form>
+      </div>
 
 </body>
 </html>

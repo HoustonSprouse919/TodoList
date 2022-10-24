@@ -27,7 +27,7 @@ function taskItem(title, description, dueDate,priority,notes,arrayName){ //const
 const container = document.querySelector('#projectsArea'); //selects container we are using
 container.replaceChildren();
      for(let i =0; i<projects.length;i++){
-          let divId = "divId" + i;
+          let divId = "proDivId" + i;
           function createDiv() {
             const element = document.createElement('div');
             element.setAttribute('id',divId);
@@ -56,51 +56,43 @@ container.replaceChildren();
             navButton.setAttribute('class',"edit");
             navButton.setAttribute('id',i);
                navButton.append("edit");
-               navButton.addEventListener("click", openForm );
+               navButton.addEventListener("click",()=>{ openForm("editProjectForm") });
                navButton.addEventListener("click", () => {
                currentProjectEdit = i;
               });
                return navButton;
             }
             document.querySelector("#"+divId).appendChild(button());
-            document.querySelector("#submitChanges").addEventListener("click", () => {
-              editProject(document.getElementById('projectName').value , document.getElementById('projectDesc').value)
-            });
-            document.querySelector("#submitChanges").addEventListener("click",closeForm );
-
 
 
             function addNewButton(){
               let navButton = document.createElement("button");
               navButton.setAttribute('id',"addNewButton");
                  navButton.append("Add new project");
-                 navButton.addEventListener("click", addNewProject);
+                 navButton.addEventListener("click",()=>{ openForm("addNewProjectForm") });
                  return navButton;
               }
               document.querySelector("#projectsArea").appendChild(addNewButton());
           }
     }
-    displayProjects();
-
+    displayProjects(task);
     function testAddNew(){
       new projectItem("first project", "its the first");
       displayProjects()
     }
 
-/*function displayTask(arrayId){
-const element = document.createElement('div');
- element.setAttribute('id',"taskArea");
- document.querySelector('#content').appendChild(element);
-
+function displayTask(arrayId){
+  const container = document.querySelector('#content'); //selects container we are using
+container.replaceChildren();
  for(let i =0; i<arrayId.length;i++){
-      let divId = "divId" + i;
+      let divId = "taskDivId" + i;
       function createDiv() {
         const element = document.createElement('div');
         element.setAttribute('id',divId);
          element.setAttribute('class',"taskDiv");
         return element;
        }
-       document.querySelector('#taskArea').appendChild(createDiv());
+       container.appendChild(createDiv());
 
        function createTitle() {
         let element = document.createElement("h2");
@@ -144,18 +136,17 @@ const element = document.createElement('div');
        }
        document.querySelector("#"+divId).appendChild(createNotes());
     }
-} */
+} 
+displayTask(task)
 
-function addNewProject(projectName,projectDesc){
-  new projectItem(projectName, projectDesc);
+
+
+function openForm(id) {
+  document.getElementById(id).style.display = "block";
 }
 
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
+function closeForm(id) {
+  document.getElementById(id).style.display = "none";
 }
 
 function removeAllChildNodes(parent) {
@@ -170,7 +161,21 @@ function editProject(newTitle, newDescription){
   projects[currentProjectEdit].description = newDescription
   displayProjects()
 }
+function addNewProject(projectName,projectDesc){
+  new projectItem(projectName, projectDesc);
+  displayProjects()
+}
+
+document.querySelector("#submitChanges").addEventListener("click", () => {
+  editProject(document.getElementById('projectName').value , document.getElementById('projectDesc').value)
+});
+document.querySelector("#submitChanges").addEventListener("click",() =>{closeForm("editProjectForm")} );
+document.querySelector("#btnCancel").addEventListener("click",() =>{closeForm("editProjectForm")} );
 
 
-console.log(projects)
+document.querySelector("#submitNewProject").addEventListener("click", () => {
+  addNewProject(document.getElementById('newProjectName').value , document.getElementById('newProjectDesc').value)
+});
+document.querySelector("#submitNewProject").addEventListener("click",() =>{closeForm("addNewProjectForm")} );
+document.querySelector("#newProjectCancel").addEventListener("click",() =>{closeForm("addNewProjectForm")} );
 
