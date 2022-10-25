@@ -2,14 +2,31 @@ let projects = [];
 let currentProjectEdit;
 let currentTaskEdit;
 let currentProject = 0;
-let task = {};
+let task = [];
+
+if(!localStorage.getItem('taskCopy')) {
+  populateStorage();
+} else {
+  setStorage();
+}
+
+function populateStorage() {
+  localStorage.setItem('taskCopy',JSON.stringify(task));
+  setStorage();
+}
+function setStorage() {
+  let storedTask = JSON.parse(localStorage.getItem('taskCopy'));
+  task = storedTask;
+  console.log(localStorage.getItem('taskCopy'))
+}
+
 function projectItem(title, description){ //constructor for new book objects
   this.title= title;
   this.description= description;
   projects.push(this)
 }
   new projectItem("First title", "First description");
-  new projectItem("First title", "First description");
+  new projectItem("Second title", "Second description");
   
   function displayProjects(){
 const container = document.querySelector('#projectsArea'); //selects container we are using
@@ -19,7 +36,6 @@ container.replaceChildren();
       function newTaskArray(){
       const taskArray = [];
       task[i]= taskArray;
-      console.log(task)
       };
       newTaskArray();
 
@@ -94,7 +110,6 @@ container.replaceChildren();
     new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
     new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
     new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
-console.log(task[currentProject])
 
     function displayTask(){
       const container = document.querySelector('#content'); //selects container we are using
@@ -115,7 +130,6 @@ console.log(task[currentProject])
     
     
      for(let i =0; i<task[currentProject].length;i++){
-      console.log(i);
           let divId = "taskDivId" + i;
           function createDiv() {
             const element = document.createElement('div');
@@ -246,6 +260,7 @@ document.querySelector("#editTaskButton").addEventListener("click", () => {
 editTask(document.getElementById('editTaskName').value , document.getElementById('editTaskDesc').value, document.getElementById('editTaskNotes').value , document.getElementById('editTaskPriority').value, document.getElementById('editTaskDueDate').value);
   closeForm("editTaskForm")
   document.getElementById("actualEditTaskForm").reset();
+  populateStorage()
 });
 document.querySelector("#cancelEditTask").addEventListener("click",() =>{closeForm("editTaskForm")} );
 
@@ -255,5 +270,9 @@ document.querySelector("#submitNewTaskButton").addEventListener("click", () => {
   addNewTask(document.getElementById('newTaskName').value , document.getElementById('newTaskDesc').value, document.getElementById('newTaskDueDate').value , document.getElementById('newTaskPriority').value, document.getElementById('newTaskNotes').value);
     closeForm("addNewTaskForm")
     document.getElementById("actualAddNewTaskForm").reset();
+    populateStorage()
   });
   document.querySelector("#cancelNewTaskButton").addEventListener("click",() =>{closeForm("addNewTaskForm")} );
+
+
+
