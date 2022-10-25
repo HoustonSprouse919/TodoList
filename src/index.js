@@ -85,6 +85,20 @@ container.replaceChildren();
 function displayTask(arrayId){
   const container = document.querySelector('#content'); //selects container we are using
 container.replaceChildren();
+
+function button(){
+  let navButton = document.createElement("button");
+  navButton.setAttribute('class',"Task");
+  navButton.setAttribute('id',"addNewTask");
+     navButton.append("edit");
+     navButton.addEventListener("click", () => {
+      openForm("addNewTaskForm");
+    });
+     return navButton;
+  }
+  document.querySelector("#content").appendChild(button());
+
+
  for(let i =0; i<arrayId.length;i++){
       let divId = "taskDivId" + i;
       function createDiv() {
@@ -185,8 +199,8 @@ function editTask(newTitle, newDescription, newDueDate, newPriority, newNotes, n
   task[currentTaskEdit].checkStatus = newCheckStatus;
   displayTask(task)
 }
-function addNewTask(title, description, dueDate,priority,notes,arrayName){
-  new taskItem(title, description, dueDate,priority,notes,arrayName);
+function addNewTask(title, description, dueDate,priority,notes){
+  new taskItem(title, description, dueDate,priority,notes,task);
   displayTask(task)
 }
 
@@ -206,6 +220,14 @@ document.querySelector("#cancelNewProject").addEventListener("click",() =>{close
 
 document.querySelector("#editTaskButton").addEventListener("click", () => {
 editTask(document.getElementById('editTaskName').value , document.getElementById('editTaskDesc').value, document.getElementById('editTaskNotes').value , document.getElementById('editTaskPriority').value, document.getElementById('editTaskDueDate').value);
-   
   closeForm("editTaskForm")
 });
+document.querySelector("#cancelEditTask").addEventListener("click",() =>{closeForm("editTaskForm")} );
+
+
+
+document.querySelector("#submitNewTaskButton").addEventListener("click", () => {
+  addNewTask(document.getElementById('newTaskName').value , document.getElementById('newTaskDesc').value, document.getElementById('newTaskNotes').value , document.getElementById('newTaskPriority').value, document.getElementById('newTaskDueDate').value);
+    closeForm("editTaskForm")
+  });
+  document.querySelector("#cancelNewTaskButton").addEventListener("click",() =>{closeForm("addNewTaskForm")} );
