@@ -143,7 +143,8 @@ container.replaceChildren();
         navButton.setAttribute('id',i);
            navButton.append("edit");
            navButton.addEventListener("click", () => {
-           currentTaskEdit = i;
+            openForm("editTaskForm");
+            currentTaskEdit = i;
           });
            return navButton;
         }
@@ -182,7 +183,7 @@ function editTask(newTitle, newDescription, newDueDate, newPriority, newNotes, n
   task[currentTaskEdit].priority = newPriority;
   task[currentTaskEdit].notes= newNotes;
   task[currentTaskEdit].checkStatus = newCheckStatus;
-  displayProjects()
+  displayTask(task)
 }
 function addNewTask(title, description, dueDate,priority,notes,arrayName){
   new taskItem(title, description, dueDate,priority,notes,arrayName);
@@ -202,4 +203,9 @@ document.querySelector("#submitNewProject").addEventListener("click", () => {
 });
 document.querySelector("#cancelNewProject").addEventListener("click",() =>{closeForm("addNewProjectForm")} );
 
-addNewTask("asdaasdasads", "asdas", "asdas", "asdas","asdas" , task);
+
+document.querySelector("#editTaskButton").addEventListener("click", () => {
+editTask(document.getElementById('editTaskName').value , document.getElementById('editTaskDesc').value, document.getElementById('editTaskNotes').value , document.getElementById('editTaskPriority').value, document.getElementById('editTaskDueDate').value);
+   
+  closeForm("editTaskForm")
+});
