@@ -1,40 +1,25 @@
-let task = [];
 let projects = [];
 let currentProjectEdit;
 let currentTaskEdit;
 let currentProject = 0;
-let testArr = {};
+let task = {};
 function projectItem(title, description){ //constructor for new book objects
   this.title= title;
   this.description= description;
   projects.push(this)
 }
-
-function taskItem(title, description, dueDate,priority,notes,arrayName){ //constructor for new book objects
-    this.title= title;
-    this.description= description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.notes= notes;
-    this.checkStatus = false;
-    arrayName.push(this)
-  }
   new projectItem("First title", "First description");
   new projectItem("First title", "First description");
-  new taskItem("go to gym", "get those gains", "every day", "2","need to eat more" , task);
-  new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
-  new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
-  new taskItem("asdas", "asdas", "asdas", "asdas","asdas" , task);
-
+  
   function displayProjects(){
 const container = document.querySelector('#projectsArea'); //selects container we are using
 container.replaceChildren();
      for(let i =0; i<projects.length;i++){
      
       function newTaskArray(){
-      const task = [];
-      testArr[i]= task;
-      console.log(testArr)
+      const taskArray = [];
+      task[i]= taskArray;
+      console.log(task)
       };
       newTaskArray();
 
@@ -44,7 +29,9 @@ container.replaceChildren();
             element.setAttribute('id',divId);
              element.setAttribute('class',"projectDiv");
              element.addEventListener("click",()=>{ 
-              currentProject = i;});
+              currentProject = i;
+              displayTask() 
+            console.log(currentProject)});
 
             return element;
            }
@@ -91,17 +78,21 @@ container.replaceChildren();
     }
     displayProjects();
 
-    function testTaskItem(title, description, dueDate,priority,notes){ //constructor for new book objects
+    function taskItem(title, description, dueDate,priority,notes){ //constructor for new book objects
       this.title= title;
       this.description= description;
       this.dueDate = dueDate;
       this.priority = priority;
       this.notes= notes;
       this.checkStatus = false;
+      task[currentProject].push(this);
     }
-    new testTaskItem("asdas", "asdas", "asdas", "asdas","asdas")
-
-
+    
+    new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
+    new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
+    new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
+    new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
+console.log(task[currentProject])
 
     function displayTask(){
       const container = document.querySelector('#content'); //selects container we are using
@@ -121,6 +112,7 @@ container.replaceChildren();
     
     
      for(let i =0; i<task[currentProject].length;i++){
+      console.log(i);
           let divId = "taskDivId" + i;
           function createDiv() {
             const element = document.createElement('div');
@@ -129,20 +121,21 @@ container.replaceChildren();
             return element;
            }
            container.appendChild(createDiv());
-    
+
+        
            function createTitle() {
             let element = document.createElement("h2");
             element.setAttribute('class',"title");
-            element.append("Task: " + task[i].title);
+            element.append("Task: " + task[currentProject][i].title);
             return element;
            }
            document.querySelector("#"+divId).appendChild(createTitle());
-    
+          
           
            function createDescription() {
             let element = document.createElement("p");
             element.setAttribute('class',"description");
-            element.append("Description: " +arrayId[i].description)
+            element.append("Description: " +task[currentProject][i].description)
             return element;
            }
            document.querySelector("#"+divId).appendChild(createDescription());
@@ -150,7 +143,7 @@ container.replaceChildren();
            function createDueDate() {
             let element = document.createElement("p");
             element.setAttribute('class',"dueDate");
-            element.append("Due date: " +arrayId[i].dueDate);
+            element.append("Due date: " +task[currentProject][i].dueDate);
             return element;
            }
            document.querySelector("#"+divId).appendChild(createDueDate());
@@ -159,7 +152,7 @@ container.replaceChildren();
            function createPriority() {
             let element = document.createElement("p");
             element.setAttribute('class',"priority");
-            element.append("Priority: " +arrayId[i].priority);
+            element.append("Priority: " +task[currentProject][i].priority);
             return element;
            }
            document.querySelector("#"+divId).appendChild(createPriority());
@@ -167,7 +160,7 @@ container.replaceChildren();
            function createNotes() {
             let element = document.createElement("p");
             element.setAttribute('class',"notes");
-            element.append("Notes: " +arrayId[i].notes);
+            element.append("Notes: " +task[currentProject][i].notes);
             return element;
            }
            document.querySelector("#"+divId).appendChild(createNotes());
@@ -185,93 +178,8 @@ container.replaceChildren();
             }
             document.querySelector("#"+divId).appendChild(button());
         }
-    } 
-    displayTask(task)
-/*function displayTask(arrayId){
-  const container = document.querySelector('#content'); //selects container we are using
-container.replaceChildren();
-
-function button(){
-  let navButton = document.createElement("button");
-  navButton.setAttribute('class',"Task");
-  navButton.setAttribute('id',"addNewTask");
-     navButton.append("edit");
-     navButton.addEventListener("click", () => {
-      openForm("addNewTaskForm");
-    });
-     return navButton;
-  }
-  document.querySelector("#content").appendChild(button());
-
-
- for(let i =0; i<arrayId.length;i++){
-      let divId = "taskDivId" + i;
-      function createDiv() {
-        const element = document.createElement('div');
-        element.setAttribute('id',divId);
-         element.setAttribute('class',"taskDiv");
-        return element;
-       }
-       container.appendChild(createDiv());
-
-       function createTitle() {
-        let element = document.createElement("h2");
-        element.setAttribute('class',"title");
-        element.append("Task: " + arrayId[i].title);
-        return element;
-       }
-       document.querySelector("#"+divId).appendChild(createTitle());
-
-      
-       function createDescription() {
-        let element = document.createElement("p");
-        element.setAttribute('class',"description");
-        element.append("Description: " +arrayId[i].description)
-        return element;
-       }
-       document.querySelector("#"+divId).appendChild(createDescription());
-
-       function createDueDate() {
-        let element = document.createElement("p");
-        element.setAttribute('class',"dueDate");
-        element.append("Due date: " +arrayId[i].dueDate);
-        return element;
-       }
-       document.querySelector("#"+divId).appendChild(createDueDate());
-
-
-       function createPriority() {
-        let element = document.createElement("p");
-        element.setAttribute('class',"priority");
-        element.append("Priority: " +arrayId[i].priority);
-        return element;
-       }
-       document.querySelector("#"+divId).appendChild(createPriority());
-
-       function createNotes() {
-        let element = document.createElement("p");
-        element.setAttribute('class',"notes");
-        element.append("Notes: " +arrayId[i].notes);
-        return element;
-       }
-       document.querySelector("#"+divId).appendChild(createNotes());
-
-       function button(){
-        let navButton = document.createElement("button");
-        navButton.setAttribute('class',"Task");
-        navButton.setAttribute('id',i);
-           navButton.append("edit");
-           navButton.addEventListener("click", () => {
-            openForm("editTaskForm");
-            currentTaskEdit = i;
-          });
-           return navButton;
-        }
-        document.querySelector("#"+divId).appendChild(button());
-    }
-} 
-displayTask(task)*/
-
+    }  
+    displayTask() 
 
 
 function openForm(id) {
