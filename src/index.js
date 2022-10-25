@@ -30,8 +30,7 @@ container.replaceChildren();
              element.setAttribute('class',"projectDiv");
              element.addEventListener("click",()=>{ 
               currentProject = i;
-              displayTask() 
-            console.log(currentProject)});
+              displayTask() });
 
             return element;
            }
@@ -57,8 +56,9 @@ container.replaceChildren();
             navButton.setAttribute('class',"edit");
             navButton.setAttribute('id',i);
                navButton.append("edit");
-               navButton.addEventListener("click",()=>{ openForm("editProjectForm") });
-               navButton.addEventListener("click", () => {
+               navButton.addEventListener("click",()=>{ 
+                closeAllForms()
+                openForm("editProjectForm")
                currentProjectEdit = i;
               });
                return navButton;
@@ -70,7 +70,9 @@ container.replaceChildren();
               let navButton = document.createElement("button");
               navButton.setAttribute('id',"addNewButton");
                  navButton.append("Add new project");
-                 navButton.addEventListener("click",()=>{ openForm("addNewProjectForm") });
+                 navButton.addEventListener("click",()=>{ 
+                  closeAllForms()
+                  openForm("addNewProjectForm") });
                  return navButton;
               }
               document.querySelector("#"+divId).appendChild(addNewButton());
@@ -104,6 +106,7 @@ console.log(task[currentProject])
       navButton.setAttribute('id',"addNewTask");
          navButton.append("edit");
          navButton.addEventListener("click", () => {
+          closeAllForms()
           openForm("addNewTaskForm");
         });
          return navButton;
@@ -171,6 +174,7 @@ console.log(task[currentProject])
             navButton.setAttribute('id',i);
                navButton.append("edit");
                navButton.addEventListener("click", () => {
+                closeAllForms()
                 openForm("editTaskForm");
                 currentTaskEdit = i;
               });
@@ -189,7 +193,11 @@ function openForm(id) {
 function closeForm(id) {
   document.getElementById(id).style.display = "none";
 }
-function clearForm(){
+function closeAllForms(){
+  document.getElementById("editProjectForm").style.display = "none";
+  document.getElementById("addNewProjectForm").style.display = "none";
+  document.getElementById("addNewTaskForm").style.display = "none";
+  document.getElementById("editTaskForm").style.display = "none";
 }
 
 
@@ -204,22 +212,24 @@ function addNewProject(projectName,projectDesc){
 }
 
 function editTask(newTitle, newDescription, newDueDate, newPriority, newNotes, newCheckStatus){
-  task[currentTaskEdit].title = newTitle
-  task[currentTaskEdit].description = newDescription
-  task[currentTaskEdit].dueDate = newDueDate;
-  task[currentTaskEdit].priority = newPriority;
-  task[currentTaskEdit].notes= newNotes;
-  task[currentTaskEdit].checkStatus = newCheckStatus;
-  displayTask(task)
+  task[currentProject][currentTaskEdit].title = newTitle
+  task[currentProject][currentTaskEdit].description = newDescription
+  task[currentProject][currentTaskEdit].dueDate = newDueDate;
+  task[currentProject][currentTaskEdit].priority = newPriority;
+  task[currentProject][currentTaskEdit].notes= newNotes;
+  task[currentProject][currentTaskEdit].checkStatus = newCheckStatus;
+  displayTask()
 }
 function addNewTask(title, description, dueDate,priority,notes){
   new taskItem(title, description, dueDate,priority,notes,task);
-  displayTask(task)
+  displayTask()
 }
 
 document.querySelector("#submitChanges").addEventListener("click", () => {
   editProject(document.getElementById('projectName').value , document.getElementById('projectDesc').value)
   closeForm("editProjectForm");
+  document.getElementById("actualEditProjectForm").reset();
+
 });
 document.querySelector("#btnCancel").addEventListener("click",() =>{closeForm("editProjectForm")} );
 
@@ -227,6 +237,7 @@ document.querySelector("#btnCancel").addEventListener("click",() =>{closeForm("e
 document.querySelector("#submitNewProject").addEventListener("click", () => {
   addNewProject(document.getElementById('newProjectName').value , document.getElementById('newProjectDesc').value);
   closeForm("addNewProjectForm")
+  document.getElementById("actualNewProjectForm").reset();
 });
 document.querySelector("#cancelNewProject").addEventListener("click",() =>{closeForm("addNewProjectForm")} );
 
@@ -234,6 +245,7 @@ document.querySelector("#cancelNewProject").addEventListener("click",() =>{close
 document.querySelector("#editTaskButton").addEventListener("click", () => {
 editTask(document.getElementById('editTaskName').value , document.getElementById('editTaskDesc').value, document.getElementById('editTaskNotes').value , document.getElementById('editTaskPriority').value, document.getElementById('editTaskDueDate').value);
   closeForm("editTaskForm")
+  document.getElementById("actualEditTaskForm").reset();
 });
 document.querySelector("#cancelEditTask").addEventListener("click",() =>{closeForm("editTaskForm")} );
 
@@ -241,6 +253,7 @@ document.querySelector("#cancelEditTask").addEventListener("click",() =>{closeFo
 
 document.querySelector("#submitNewTaskButton").addEventListener("click", () => {
   addNewTask(document.getElementById('newTaskName').value , document.getElementById('newTaskDesc').value, document.getElementById('newTaskDueDate').value , document.getElementById('newTaskPriority').value, document.getElementById('newTaskNotes').value);
-    closeForm("editTaskForm")
+    closeForm("addNewTaskForm")
+    document.getElementById("actualAddNewTaskForm").reset();
   });
   document.querySelector("#cancelNewTaskButton").addEventListener("click",() =>{closeForm("addNewTaskForm")} );
