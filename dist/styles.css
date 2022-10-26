@@ -11,11 +11,61 @@ body{
     grid-row: 1;
 }
 #projectsArea{
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(54, 53, 53);
+    color: white;
     display: flex;
     flex-direction: column;
     grid-column: 1;
     grid-row: 1;
+}
+.projectDiv{
+    padding: 0px 0px 30px 10%;
+    border-bottom: 3px solid rgb(255, 255, 255);
+    border-radius: 2%;
+}
+.projectDiv button{
+    background-color: rgb(75, 180, 250);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px 10px 0px 0px;
+    padding: 5px 10px;
+}
+.projectDiv h2{
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.projectDiv p{
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px 0px;
+}
+#topBar{
+    background-color: rgb(54, 53, 53);
+    border-bottom: 3px solid rgb(151, 151, 151);
+    display: flex;
+    filter: drop-shadow(0 5px 2px #797979c5);
+    justify-content: end;
+}
+#topBar button{
+    background-color: rgb(75, 180, 250);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 10px ;
+    padding: 5px 10px;
 }
 #taskArea{
 background-color: rgb(212, 212, 212);
@@ -36,12 +86,25 @@ width: 100%;
     padding-left: 40px;
 }
 .taskDiv button{
-    height: 25px;
-    width: 100px;
+    background-color: rgb(75, 180, 250);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px 10px 0px 0px;
+    padding: 5px 10px;
+    width: 150px;
 }
 .title{
+    font-size: 25px;
+    font-weight: bold;
     grid-column: 1;
     grid-row: 1;
+}
+.description, .dueDate, .priority, .notes{
+    font-size: 20px;
 }
 .description{
         grid-column: 1;

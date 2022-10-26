@@ -1,23 +1,20 @@
 let projects = [];
-let currentProjectEdit;
 let currentTaskEdit;
 let currentProject = 0;
 let task = [];
-
 if(!localStorage.getItem('taskCopy')) {
   populateStorage();
 } else {
   setStorage();
 }
-
+function setStorage() {
+  task = (JSON.parse(localStorage.getItem('taskCopy')));
+   console.log(task)
+   console.log(JSON.parse(localStorage.getItem('taskCopy')))
+ }
 function populateStorage() {
   localStorage.setItem('taskCopy',JSON.stringify(task));
   setStorage();
-}
-function setStorage() {
-  let storedTask = JSON.parse(localStorage.getItem('taskCopy'));
-  task = storedTask;
-  console.log(localStorage.getItem('taskCopy'))
 }
 
 function projectItem(title, description){ //constructor for new book objects
@@ -32,7 +29,6 @@ function projectItem(title, description){ //constructor for new book objects
 const container = document.querySelector('#projectsArea'); //selects container we are using
 container.replaceChildren();
      for(let i =0; i<projects.length;i++){
-     
       function newTaskArray(){
       const taskArray = [];
       task[i]= taskArray;
@@ -75,7 +71,7 @@ container.replaceChildren();
                navButton.addEventListener("click",()=>{ 
                 closeAllForms()
                 openForm("editProjectForm")
-               currentProjectEdit = i;
+               currentProject = i;
               });
                return navButton;
             }
@@ -106,8 +102,8 @@ container.replaceChildren();
       task[currentProject].push(this);
     }
     
-    new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
-    new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
+    new taskItem("first Task", "yep that's first", "yep", "first","first")
+    new taskItem("Second task", "second", "second", "second","second")
     new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
     new taskItem("asdas", "asdas", "asdas", "asdas","asdas")
 
@@ -115,18 +111,24 @@ container.replaceChildren();
       const container = document.querySelector('#content'); //selects container we are using
     container.replaceChildren();
     
+    function createDiv() {
+      const element = document.createElement('div');
+      element.setAttribute('id',"topBar");
+      return element;
+     }
+     container.appendChild(createDiv());
     function button(){
       let navButton = document.createElement("button");
       navButton.setAttribute('class',"Task");
       navButton.setAttribute('id',"addNewTask");
-         navButton.append("edit");
+         navButton.append("Add new task");
          navButton.addEventListener("click", () => {
           closeAllForms()
           openForm("addNewTaskForm");
         });
          return navButton;
       }
-      document.querySelector("#content").appendChild(button());
+      document.querySelector("#topBar").appendChild(button());
     
     
      for(let i =0; i<task[currentProject].length;i++){
@@ -216,8 +218,8 @@ function closeAllForms(){
 
 
 function editProject(newTitle, newDescription){
-  projects[currentProjectEdit].title = newTitle
-  projects[currentProjectEdit].description = newDescription
+  projects[currentProject].title = newTitle
+  projects[currentProject].description = newDescription
   displayProjects()
 }
 function addNewProject(projectName,projectDesc){
@@ -232,10 +234,12 @@ function editTask(newTitle, newDescription, newDueDate, newPriority, newNotes, n
   task[currentProject][currentTaskEdit].priority = newPriority;
   task[currentProject][currentTaskEdit].notes= newNotes;
   task[currentProject][currentTaskEdit].checkStatus = newCheckStatus;
+  populateStorage()
   displayTask()
 }
 function addNewTask(title, description, dueDate,priority,notes){
   new taskItem(title, description, dueDate,priority,notes,task);
+  populateStorage()
   displayTask()
 }
 
