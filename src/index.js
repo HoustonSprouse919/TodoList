@@ -2,25 +2,31 @@ let projects = [];
 let currentTaskEdit;
 let currentProject = 0;
 let task = [];
+
+
 if(!localStorage.getItem('taskCopy')) {
   populateStorage();
 } else {
   setStorage();
 }
-function setStorage() {
-  task = (JSON.parse(localStorage.getItem('taskCopy')));
-   console.log(task)
-   console.log(JSON.parse(localStorage.getItem('taskCopy')))
- }
 function populateStorage() {
   localStorage.setItem('taskCopy',JSON.stringify(task));
   setStorage();
 }
-
+function setStorage() {
+  task = (JSON.parse(localStorage.getItem('taskCopy')));
+   console.log(task)
+ }
 function projectItem(title, description){ //constructor for new book objects
   this.title= title;
   this.description= description;
   projects.push(this)
+  function newTaskArray(){
+    const taskArray = [];
+    let j = projects.length + 2
+    task[j] = taskArray;
+    };
+    newTaskArray()
 }
   new projectItem("First title", "First description");
   new projectItem("Second title", "Second description");
@@ -29,11 +35,6 @@ function projectItem(title, description){ //constructor for new book objects
 const container = document.querySelector('#projectsArea'); //selects container we are using
 container.replaceChildren();
      for(let i =0; i<projects.length;i++){
-      function newTaskArray(){
-      const taskArray = [];
-      task[i]= taskArray;
-      };
-      newTaskArray();
 
           let divId = "proDivId" + i;
           function createDiv() {
