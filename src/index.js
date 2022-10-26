@@ -5,15 +5,31 @@ let task = [];
 
 
 if(!localStorage.getItem('taskCopy')) {
-  populateStorage();
+  populateStorageTask();
 } else {
-  setStorage();
+  setStorageTask();
 }
-function populateStorage() {
+if(!localStorage.getItem('projectsCopy')) {
+  populateStorageProjects();
+} else {
+  setStorageProjects();
+}
+
+
+function populateStorageProjects() {
+  localStorage.setItem('projectsCopy',JSON.stringify(projects));
+  setStorageTask();
+}
+function setStorageProjects() {
+  projects = (JSON.parse(localStorage.getItem('projectsCopy')));
+   console.log(projects)
+ }
+
+function populateStorageTask() {
   localStorage.setItem('taskCopy',JSON.stringify(task));
-  setStorage();
+  setStorageTask();
 }
-function setStorage() {
+function setStorageTask() {
   task = (JSON.parse(localStorage.getItem('taskCopy')));
    console.log(task)
  }
@@ -219,13 +235,15 @@ function closeAllForms(){
 
 
 function editProject(newTitle, newDescription){
-  projects[currentProject].title = newTitle
-  projects[currentProject].description = newDescription
-  displayProjects()
+  projects[currentProject].title = newTitle;
+  projects[currentProject].description = newDescription;
+  populateStorageProjects();
+  displayProjects();
 }
 function addNewProject(projectName,projectDesc){
   new projectItem(projectName, projectDesc);
-  displayProjects()
+  populateStorageProjects();
+  displayProjects();
 }
 
 function editTask(newTitle, newDescription, newDueDate, newPriority, newNotes, newCheckStatus){
@@ -235,13 +253,13 @@ function editTask(newTitle, newDescription, newDueDate, newPriority, newNotes, n
   task[currentProject][currentTaskEdit].priority = newPriority;
   task[currentProject][currentTaskEdit].notes= newNotes;
   task[currentProject][currentTaskEdit].checkStatus = newCheckStatus;
-  populateStorage()
-  displayTask()
+  populateStorageTask();
+  displayTask();
 }
 function addNewTask(title, description, dueDate,priority,notes){
   new taskItem(title, description, dueDate,priority,notes,task);
-  populateStorage()
-  displayTask()
+  populateStorageTask();
+  displayTask();
 }
 
 document.querySelector("#submitChanges").addEventListener("click", () => {
