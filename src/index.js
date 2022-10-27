@@ -1,3 +1,4 @@
+//still need css makeover
 let projects = [];
 let currentTaskEdit;
 let currentProject = 0;
