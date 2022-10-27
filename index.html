@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TodoList</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div id ="projectsArea"></div>
+    <div id="content"></div>
+    <div class="form-popup" id="editProjectForm">
+        <form class="form-container" id = "actualEditProjectForm">
+          <h1>Edit Project</h1>
+      
+          <label for="projectName"><b>new project name</b></label>
+          <input type="text" id = "projectName" placeholder="Enter new project name" name="projectName" required>
+      
+          <label for="projectDesc"><b>project description</b></label>
+          <input type="text" id = "projectDesc" placeholder="Enter new project description" name="projectDesc" required>
+          
+
+          <button type="button" class="btn" id ="submitChanges">Submit changes</button>
+          <button type="button" class="btn cancel" id ="btnCancel">Close</button>
+        </form>
+      </div>
+
+
+      
+      <div class="form-popup" id="addNewProjectForm">
+          <form class="form-container" id = "actualNewProjectForm">
+            <h1>Add New Project</h1>
+        
+            <label for="newProjectName"><b>Project name</b></label>
+            <input type="text" id = "newProjectName" placeholder="Enter new project name" name="projectName" required>
+        
+            <label for="newProjectDesc"><b>project description</b></label>
+            <input type="text" id = "newProjectDesc" placeholder="Enter project description" name="projectDesc" required>
+            
+  
+            <button type="button" class="btn" id ="submitNewProject">Submit changes</button>
+            <button type="button" class="btn cancel" id ="cancelNewProject">Close</button>
+          </form>
+        </div>
+        </form>
+      </div>
+
+
+
+
+      <div class="form-popup" id="addNewTaskForm">
+        <form class="form-container" id = "actualAddNewTaskForm">
+          <h1>Add New Task</h1>
+      
+          <label for="newTaskName"><b>Task name</b></label>
+          <input type="text" id = "newTaskName" placeholder="Enter task name" name="newTaskName" required>
+      
+          <label for="newTaskNameDesc"><b>Task description</b></label>
+          <input type="text" id = "newTaskDesc" placeholder="Enter project description" name="newTaskNameDesc" required>
+          
+          <label for="newTaskNotes"><b>Task notes</b></label>
+          <input type="text" id = "newTaskNotes" placeholder="Enter new project name" name="newTaskNotes" required>
+      
+          <label for="newTaskPriority"><b>Task description</b></label>
+          <input type="text" id = "newTaskPriority" placeholder="Enter project description" name="newTaskPriority" required>
+
+          <label for="newTaskDueDate"><b>due date</b></label>
+          <input type="text" id = "newTaskDueDate" placeholder="Enter new project name" name="newTaskDueDate" required>
+      
+          <button type="button" class="btn" id ="submitNewTaskButton">Submit changes</button>
+          <button type="button" class="btn cancel" id ="cancelNewTaskButton">Close</button>
+        </form>
+      </div>
+
+
+      <div class="form-popup" id="editTaskForm">
+        <form class="form-container" id = "actualEditTaskForm">
+          <h1>Edit Task</h1>
+      
+          <label for="editTaskName"><b>Task name</b></label>
+          <input type="text" id = "editTaskName" placeholder="Enter task name" name="editTaskName" required>
+      
+          <label for="editTaskDesc"><b>Task description</b></label>
+          <input type="text" id = "editTaskDesc" placeholder="Enter project description" name="editTaskDesc" required>
+          
+          <label for="editTaskNotes"><b>Task notes</b></label>
+          <input type="text" id = "editTaskNotes" placeholder="Enter new project name" name="editTaskNotes" required>
+      
+          <label for="editTaskPriority"><b>Task Priority</b></label>
+          <input type="text" id = "editTaskPriority" placeholder="Enter project description" name="editTaskPriority" required>
+
+          <label for="editTaskDueDate"><b>Task due date</b></label>
+          <input type="text" id = "editTaskDueDate" placeholder="Enter new project name" name="editTaskDueDate" required>
+      
+          <button type="button" class="btn" id ="editTaskButton">Submit changes</button>
+          <button type="button" class="btn cancel" id ="cancelEditTask">Close</button>
+        </form>
+      </div>
+</body>
+</html>
