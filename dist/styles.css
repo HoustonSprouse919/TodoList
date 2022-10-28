@@ -141,9 +141,10 @@ width: 100%;
 }
 /*pop up window css*/
   .form-popup {
-    background-color: rgb(139, 138, 138);
-    border: 3px solid #f1f1f1;
+    background-color: rgb(44, 44, 44);
+    border: 1px solid #f1f1f1;
     bottom: 50vh;
+    color: white;
     display: none;
     flex-direction: column;
     padding: 20px 10px;
@@ -151,9 +152,21 @@ width: 100%;
     right: 10px;
     z-index: 9;
   }
+  .form-popup input textarea {
+    border: none;
+        padding: 2px;
+      }
+     .form-popup input[type=text]:focus {
+        border:2px solid rgb(0, 128, 170);
+        filter: drop-shadow(0px 5px 4px #b8b8b857);
+      }
   .form-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+  .descriptionBox{
+    word-wrap: break-word;
+    word-break: break-all;
   }
