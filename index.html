@@ -17,8 +17,9 @@
           <input type="text" id = "projectName" placeholder="Enter new project name" name="projectName" required>
       
           <label for="projectDesc"><b>project description</b></label>
-          <input type="text" id = "projectDesc" placeholder="Enter new project description" name="projectDesc" required>
-          
+          <textarea rows="3" cols="25" 
+          id = "projectDesc" placeholder="Enter project description" name="projectDesc" class ="descriptionBox" required
+          ></textarea>
 
           <button type="button" class="btn" id ="submitChanges">Submit changes</button>
           <button type="button" class="btn cancel" id ="btnCancel">Close</button>
@@ -35,7 +36,7 @@
             <input type="text" id = "newProjectName" placeholder="Enter new project name" name="projectName" required>
         
             <label for="newProjectDesc"><b>project description</b></label>
-            <input type="text" id = "newProjectDesc" placeholder="Enter project description" name="projectDesc" required>
+            <input type="text" id = "newProjectDesc" placeholder="Enter project description" name="projectDesc" class ="descriptionBox" required>
             
   
             <button type="button" class="btn" id ="submitNewProject">Submit changes</button>
@@ -55,17 +56,20 @@
           <label for="newTaskName"><b>Task name</b></label>
           <input type="text" id = "newTaskName" placeholder="Enter task name" name="newTaskName" required>
       
-          <label for="newTaskNameDesc"><b>Task description</b></label>
-          <input type="text" id = "newTaskDesc" placeholder="Enter project description" name="newTaskNameDesc" required>
+          <label for="newTaskDesc"><b>Task description</b></label>
+          <textarea rows="3" cols="25"
+          id = "newTaskDesc" placeholder="Enter task description" name="newTaskDesc" class ="descriptionBox" required
+          ></textarea>
           
+
           <label for="newTaskNotes"><b>Task notes</b></label>
-          <input type="text" id = "newTaskNotes" placeholder="Enter new project name" name="newTaskNotes" required>
+          <input type="text" id = "newTaskNotes" placeholder="Enter task notes" name="newTaskNotes" required>
       
-          <label for="newTaskPriority"><b>Task description</b></label>
-          <input type="text" id = "newTaskPriority" placeholder="Enter project description" name="newTaskPriority" required>
+          <label for="newTaskPriority"><b>Task priority</b></label>
+          <input type="text" id = "newTaskPriority" placeholder="Enter task priority" name="newTaskPriority" required>
 
           <label for="newTaskDueDate"><b>due date</b></label>
-          <input type="date" id = "newTaskDueDate" placeholder="Enter new project name" name="newTaskDueDate" required>
+          <input type="date" id = "newTaskDueDate" placeholder="Enter task due date" name="newTaskDueDate" required>
       
           <button type="button" class="btn" id ="submitNewTaskButton">Submit changes</button>
           <button type="button" class="btn cancel" id ="cancelNewTaskButton">Close</button>
@@ -81,13 +85,15 @@
           <input type="text" id = "editTaskName" placeholder="Enter task name" name="editTaskName" required>
       
           <label for="editTaskDesc"><b>Task description</b></label>
-          <input type="text" id = "editTaskDesc" placeholder="Enter project description" name="editTaskDesc" required>
-          
+          <textarea rows="3" cols="25" placeholder="New task description"
+          id = "editTaskDesc" placeholder="Enter project description" name="editTaskDesc" class ="descriptionBox" required
+          ></textarea>
+
           <label for="editTaskNotes"><b>Task notes</b></label>
-          <input type="text" id = "editTaskNotes" placeholder="Enter new project name" name="editTaskNotes" required>
+          <input type="text" id = "editTaskNotes" placeholder="Enter task notes" name="editTaskNotes" required>
       
           <label for="editTaskPriority"><b>Task Priority</b></label>
-          <input type="text" id = "editTaskPriority" placeholder="Enter project description" name="editTaskPriority" required>
+          <input type="text" id = "editTaskPriority" placeholder="Enter task priority" name="editTaskPriority" required>
 
           <label for="editTaskDueDate"><b>Task due date</b></label>
           <input type="date" id = "editTaskDueDate" placeholder="Enter new project name" name="editTaskDueDate" required>
