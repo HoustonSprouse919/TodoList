@@ -307,7 +307,7 @@ function addNewTask(title, description, dueDate, priority, notes) {
   displayTask();
 }
 function deleteProject(){
-  console.log("working")
+  console.log("working yep")
   projects.splice(currentProject,1);
   task.splice(currentProject,1)
   currentProject = 0;
